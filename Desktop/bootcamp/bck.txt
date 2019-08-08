@@ -1,0 +1,125 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+using CSharp.Activity.Collections;
+
+namespace CSharp.Activity.Collections
+{
+    public class CustomerInfoCollection
+    {
+        public List<CustomerInfo> cust = new List<CustomerInfo>();
+
+        public int Add(CustomerInfo cus)
+        {
+            int index;
+            if (cus == null)
+            {
+                throw new ArgumentNullException();
+            }
+            else if (cust.Equals(cust))
+            {
+                Console.WriteLine("Entry already exists in the list");
+                return -1;
+            }
+            else
+            {
+                cust.Add(cus);
+                index = cust.IndexOf(cus);
+                Console.WriteLine("New customer info was added to the list with index: {0}", index);
+                return index;
+
+            }
+
+        }
+        public void Insert(int index, CustomerInfo cus)
+        {
+            if (cus == null)
+            {
+                throw new ArgumentNullException();
+            }
+            else if (index < 0 || index > cust.Count)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            else if (cust.Equals(cus))
+            {
+                Console.WriteLine("Object already exists!");
+            }
+            else
+            {
+                cust.Insert(index, cus);
+                Console.WriteLine("Object was inserted into list with index: {0}", index);
+            }
+        }
+        public void Remove(CustomerInfo cus)
+        {
+            if(cus == null)
+            {
+                throw new ArgumentNullException();
+            }
+            else
+            {
+                cust.Remove(cus);
+                Console.WriteLine("Object was removed!");
+
+                //cust.ForEach(Console.WriteLine);
+            }
+        }
+        public bool Contains(CustomerInfo cus)
+        {
+            if (cust.Contains(cus))
+            {
+                Console.WriteLine("Object is in the list!");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Object does not exist in the list");
+                return false;
+               
+            }
+        }
+        public int IndexOf(CustomerInfo cus)
+        {
+            int index;
+            if(cus == null
+)
+            {                
+                throw new ArgumentNullException();
+            }
+            else if (!cust.Contains(cus))
+            {
+                Console.WriteLine("Object does not exist in the list");
+                return -1;
+            }
+            else
+            {
+                index = cust.IndexOf(cus);
+                Console.WriteLine("Index of the object is: {0}", index);
+                return index;
+            }
+        }
+        public CustomerInfo this[int index]
+        {
+            get
+            {
+                if (index < 0 || index > this.cust.Count)
+                {
+                    throw new IndexOutOfRangeException("Invalid Index");
+                }
+                
+                return this.cust[index];
+            }
+            protected set
+            {
+                if (value != null || !cust.Contains(value))
+                {
+                    this.cust[index] = value;
+                }
+            }
+        }
+
+
+    }
+}
